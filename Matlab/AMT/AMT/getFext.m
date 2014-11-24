@@ -1,6 +1,6 @@
 function [Fext, noisyU] = getFext(Fx,Fy, imName,downscaleFactor);
 noisyU = imread(imName);
-noisyU = downsample2D(noisyU,downscaleFactor);
+noisyU = downsample2d(noisyU,downscaleFactor);
 f = double(noisyU);
 
 SobelX = [-1,0,1;-2,0,2;-1,0,1];

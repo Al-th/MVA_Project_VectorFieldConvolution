@@ -1,3 +1,79 @@
+\documentclass{article}
+
+\usepackage{graphicx} % Allows the inclusion of images
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{varioref}
+\usepackage{url}
+\usepackage{amsfonts}
+
+\usepackage[top=4 cm, bottom=3.8cm, left=3cm, right=3cm]{geometry}
+
+\begin{document}
+
 \section{Proposition de l'article}
 
-La segmentation par contour actif utilisant le champ de vecteurs \textit{GVF} comme force extérieure corrige de nombreux défauts de la méthode \textit{snake} classique en permettant d'augmenter la portée de convergence de la courbe du contour actif vers le contour souhaité mais aussi d'améliorer la qualité de la segmentation dans les zones à forte concavité. Cependant, le champ de vecteurs \textit{GVF} présente de nombreux désavantages comme un temps de calcul conséquent, une forte sensibilité au bruit et aux paramètres ainsi que la relation ambigu entre la portée de convergence du contour actif et les paramètres du \textit{GVF}.
+Le modèle de segmentation par contour actif utilisant le champ GVF pour définir son énergie externe présente cependant des limitations : un temps de calcul important, une forte sensibilité au bruit et aux paramètres (ainsi qu'une relation ambigu entre la portée de convergence du contour actif et les paramètres du GVF : est-ce compréhensible ?).
+
+Afin de corriger ces différents problèmes, Bing Li \& al présentent dans cet article une nouvelle définition de la force externe régissant l'évolution du contour actif vers les bords  de l'objet à segmenter. Cette nouvelle force externe, nommé Vector Field Convolution (VFC), est calculée en convoluant un noyau de champ de vecteur à une carte des contours extraite de l'image d'origine.   
+
+\subsection{Minimisation de l'énergie $E_{ac}$}
+
+Lorsque le minimum de $E_{ac}$ est atteint, le contour actif $\mathbf{v}(s)$ doit satisfaire l'équation d'Euler-Lagrange :
+\begin{equation}
+	\alpha \mathbf{v}'' - \beta \mathbf{v}'''' + f_{ext}(\mathbf{v}) = 0
+	\label{eq:bilan}
+\end{equation}
+
+où $f_{ext}= - \nabla E_{ext}(\mathbf{v})$
+
+Cette équation, qui peut être vue comme une équation bilan des forces internes ($\alpha \mathbf{v}'' - \beta \mathbf{v}''''$) et externes $f_{ext}$, permet de calculer $\mathbf{v}(s)$. Afin de résoudre \ref{eq:bilan}, le contour $\mathbf{v}(s)$ est considéré comme une fonction du temps $t$. La solution est obtenue en appliquant une descente de gradient sur l'équation en partant d'un contour initial $\mathbf{v}(s,0)$:
+
+\begin{equation}
+	\frac{\partial \mathbf{v}(s,t)}{\partial t} = \alpha \mathbf{v}''(s,t) - \beta \mathbf{v}''''(s,t)+f_{ext}(\mathbf{v}(s,t))
+	\label{eq:graddesc}
+\end{equation}
+
+Cette équation est ensuite résolue numériquement en utilisant une approche par différence finie (besoin d'en parler ??).
+
+Bing Lie \& al remplace dans leur article la force externe $f_{ext}(\mathbf{v})$ par le champ VFC $f_{vfc}(\mathbf{v})$ dans l'équation \ref{eq:graddesc}.
+
+\subsection{Vector Field Convolution}
+
+Afin de calculer cette nouvelle force externe statique, les auteurs définissent d'abord un \textit{vector field kernel} $\mathbf{k}(x,y)=[u_k(x,y),v_k(x,y)]$ tel que chaque vecteur pointe vers l'origine du noyau 
+\begin{equation}
+	\mathbf{k}(x,y)=m(x,y)\mathbf{n}(x,y)
+\end{equation}
+où $m(x,y)$ est le poids affecté au vecteur en $(x,y)$ et $\mathbf{n}(x,y)$ est le vecteur unitaire pointant vers l'origine du noyau $(0,0)$.
+
+A partir du noyau $\mathbf{k}(x,y)$ et de la carte des contours $F(x,y)$ obtenue à partir de l'image d'origine $I(x,y)$, le champ VFC est définie par :
+
+\begin{align*}
+	f_{vfc}(x,y) & = F(x,y)*\mathbf{k}(x,y) \\
+				 & = [F(x,y)*u_k(x,y),F(x,y)*v_k(x,y)]
+\end{align*}
+
+Etant donné que la carte des contours a une réponse forte au niveau des contours, ceux-ci participent d'avantage au calcul du VFC par rapport aux zones homogènes. Ainsi, en considérant une particule libre placée dans le champ VFC, celle-ci sera attirée vers les contours de l'image. 
+
+Le champ VFC dépend fortement du noyau $\mathbf{k(x,y)}$ et en particulier du poids $m(x,y)$ qui est affecté à chaque vecteur du noyau de convolution. Les auteurs partent du principe que plus une particule s'éloigne du contour d'intérêt plus la force d'attraction du contour sur la particule diminue. Ainsi ils proposent deux types de fonctions :
+\begin{align}
+	m_1(x,y) & = (r+\epsilon)^{-\gamma} \\
+	m_2(x,y) & = exp(-r^2/\sigma^2)
+\end{align}
+
+où $\gamma$ et $\sigma$ contrôle la décroissance de la fonction et $\epsilon$ permet d'éviter la division par zero à l'origine du noyau. Pour la fonction de poids $m_1(x,y)$, plus $\gamma$ diminue, plus la portée d'attraction des contours d'intérêt augmente. Au contraire, pour $m_2(x,y)$, plus $\sigma$ augmente, plus la portée d'attraction des contours d'intérêt augmente. 
+
+
+\subsection{Mixed Vector Field Convolution}
+
+
+
+\subsection{}
+
+
+\end{document}
