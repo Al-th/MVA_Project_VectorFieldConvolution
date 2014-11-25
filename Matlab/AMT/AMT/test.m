@@ -9,7 +9,7 @@ C = zeros(2);
 C(1) = 80;
 C(2) = 80;
 R = 70;
-imName = 'im_Unoisy.bmp';
+imName = 'test.jpg';
 downsampleFactor = 1;
 edgeMapType = 'cannyWeighted';
 

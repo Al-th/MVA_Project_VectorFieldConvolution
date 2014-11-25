@@ -1,6 +1,6 @@
 \section{Proposition de l'article}
 
-Le modèle de segmentation par contour actif utilisant le champ GVF pour définir son énergie externe présente cependant des limitations : un temps de calcul important, une forte sensibilité au bruit et aux paramètres (ainsi qu'une relation ambigu entre la portée de convergence du contour actif et les paramètres du GVF : est-ce compréhensible ?).
+Le modèle de segmentation par contour actif utilisant le champ GVF pour définir son énergie externe présente cependant des limitations dont Bing Li \& al font mention dans leur article : un temps de calcul important, une forte sensibilité au bruit et aux paramètres. D'autre part, la relation entre les paramètres de GVF et la portée à laquelle le contour actif est attirée par le bord n'est pas claire.\\
 
 Afin de corriger ces différents problèmes, Bing Li \& al présentent dans cet article une nouvelle définition de la force externe régissant l'évolution du contour actif vers les bords  de l'objet à segmenter. Cette nouvelle force externe, nommé Vector Field Convolution (VFC), est calculée en convoluant un noyau de champ de vecteur à une carte des contours extraite de l'image d'origine.   
 
