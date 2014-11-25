@@ -44,29 +44,33 @@ AC_quiver(Fext,(255*ones(n,m)-f));
 
 %%
 %Show streamline
-[x y] = meshgrid(1:2:(m-1),1:2:(n-1));
+[x y] = meshgrid(1:4:(m-1),1:4:(n-1));
 vt = [x(:) y(:)];   % seeds
-VT = zeros([size(vt) 40]);
+VT = zeros([size(vt) 120]);
 VT(:,:,1) = vt;
-for i=1:39, % moving these seeds
+for i=1:119, % moving these seeds
     vt = AC_deform(vt,0,0,tau,Fext,1);
     VT(:,:,i+1) = vt;
 end
 
-% for i=1:100, % moving these seeds
-%     vt  = AC_deform(vt,alpha,beta,tau,Fext,5);
-%     vt = AC_remesh(vt,1);
-%     
-%     AC_quiver(Fext,f);
-%     hold on;
-%     plot(VT(i,:,1),VT(i,:,2),'.r');
-%     hold off
-%     pause(0.1);
-% end
+%Define ground truth to color streamline according to FOI
+impulse_noise = zeros(n,m);
+impulse_noise((n/2-2):(n/2+2),28:32) = 255;
+[iTy, iTx] = find(impulse_noise);
+weak_edge = zeros(n,m);
+weak_edge(:,208:212) = 128;
+[wTy, wTx] = find(weak_edge);
+
 figure(1);
 hold on
 for i=1:size(vt,1),
-   plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'r','linewidth',1)            
+   if min(abs(VT(i,1,end)-iTx)+abs(VT(i,2,end)-iTy))<=2,
+       plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'r','linewidth',1)
+   elseif min(abs(VT(i,1,end)-wTx)+abs(VT(i,2,end)-wTy))<=2,
+       plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'y','linewidth',1)
+   else
+       plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'p','linewidth',1)
+   end
 end
 hold off
 %axis equal; axis 'ij';
