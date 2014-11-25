@@ -30,7 +30,7 @@ f = f-(min(min(f)));
 f = f./(max(max(f)));
 
 if 1
-    print('click in window for center and radius of circle')
+    
     [x,y] = ginput(2);
     C(1) = x(1);
     C(2) = y(1);
