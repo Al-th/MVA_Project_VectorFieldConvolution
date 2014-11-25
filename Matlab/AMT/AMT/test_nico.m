@@ -8,7 +8,7 @@ RES = 0.5;
 R = 100;
 
 
-n = 256;
+n = 128;
 m = 256;
 f = zeros(n,m);
 f((n/2-2):(n/2+2),28:32) = 255;
@@ -44,7 +44,7 @@ AC_quiver(Fext,(255*ones(n,m)-f));
 
 %%
 %Show streamline
-[x y] = meshgrid(1:2:(n-1),1:2:(m-1));
+[x y] = meshgrid(1:2:(m-1),1:2:(n-1));
 vt = [x(:) y(:)];   % seeds
 VT = zeros([size(vt) 40]);
 VT(:,:,1) = vt;
