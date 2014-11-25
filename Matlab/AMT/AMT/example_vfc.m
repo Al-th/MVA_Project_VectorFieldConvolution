@@ -101,6 +101,7 @@ for cs = 3:3,
         axis([1 64 1 64])
     else
         AC_quiver(Fext, I);
+        pause();
         title(['normalized ',titl,' field']);
     end
     %% uncomment these 2 lines to save the display 
