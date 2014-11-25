@@ -1,18 +1,17 @@
 clear;
 clc;
 
-[Fx,Fy] = getKernel(32,1);
-
 alpha = .5;
 beta = 0.1;
 tau = 0.5;
 RES = 0.5;
 R = 100;
-vt = AC_initial(RES, 'circle', [70 70 R]);   % seeds
-n = 128;
+
+
+n = 256;
 m = 256;
 f = zeros(n,m);
-f(62:66,28:32) = 255;
+f((n/2-2):(n/2+2),28:32) = 255;
 f(:,126:130) = 255;
 f(:,208:212) = 128;
 figure(1);
@@ -20,7 +19,7 @@ imshow((255*ones(n,m)-f),[0,255]);
 
 %%
 %Compute Fext
-K = AM_VFK(2, 64, 'power',1.8);
+K = AM_VFK(2, 128, 'power',1.8);
 FFTsize = size(f) + size(K(:,:,1)) - 1;
 k = K(:,:,1) + j*K(:,:,2);      % consider the vectors as complex numbers
 temp = ifft2(fft2(f, FFTsize(1), FFTsize(2)) .* fft2(k, FFTsize(1), FFTsize(2)));
@@ -64,8 +63,9 @@ end
 %     hold off
 %     pause(0.1);
 % end
+figure(1);
 hold on
-for i=1:4:size(vt,1),
+for i=1:size(vt,1),
    plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'r','linewidth',1)            
 end
 hold off

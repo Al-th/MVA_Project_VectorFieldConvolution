@@ -1,5 +1,4 @@
 function [Fx,Fy] = getKernel(kernelRadius,type);
-kernelRadius = 32;
 [X,Y] = meshgrid(-kernelRadius:1:kernelRadius, -kernelRadius:1:kernelRadius);
 
 r = sqrt(X.^2+Y.^2);
@@ -8,7 +7,7 @@ S = size(X);
 
 if (type==1)
     epsilon = 1e-8;
-    gamma = 1.9;
+    gamma = 1.8;
     forceMagnitude = (r+epsilon).^(-gamma);
 else
     sigma = 4;  

@@ -11,6 +11,8 @@
 \usepackage{varioref}
 \usepackage{url}
 \usepackage{amsfonts}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage[top=4 cm, bottom=3.8cm, left=3cm, right=3cm]{geometry}
 
@@ -58,7 +60,7 @@ A partir du noyau $\mathbf{k}(x,y)$ et de la carte des contours $F(x,y)$ obtenue
 				 & = [F(x,y)*u_k(x,y),F(x,y)*v_k(x,y)]
 \end{align*}
 
-Etant donné que la carte des contours a une réponse forte au niveau des contours, ceux-ci participent d'avantage au calcul du VFC par rapport aux zones homogènes. Ainsi, en considérant une particule libre placée dans le champ VFC, celle-ci sera attirée vers les contours de l'image. 
+Etant donné que la carte des contours a une réponse forte au niveau des contours, ceux-ci participent d'avantage au calcul du champ VFC par rapport aux zones homogènes. Ainsi, en considérant une particule libre placée dans le champ VFC, celle-ci sera attirée vers les contours de l'image. 
 
 Le champ VFC dépend fortement du noyau $\mathbf{k(x,y)}$ et en particulier du poids $m(x,y)$ qui est affecté à chaque vecteur du noyau de convolution. Les auteurs partent du principe que plus une particule s'éloigne du contour d'intérêt plus la force d'attraction du contour sur la particule diminue. Ainsi ils proposent deux types de fonctions :
 \begin{align}
@@ -66,10 +68,39 @@ Le champ VFC dépend fortement du noyau $\mathbf{k(x,y)}$ et en particulier du p
 	m_2(x,y) & = exp(-r^2/\sigma^2)
 \end{align}
 
-où $\gamma$ et $\sigma$ contrôle la décroissance de la fonction et $\epsilon$ permet d'éviter la division par zero à l'origine du noyau. Pour la fonction de poids $m_1(x,y)$, plus $\gamma$ diminue, plus la portée d'attraction des contours d'intérêt augmente. Au contraire, pour $m_2(x,y)$, plus $\sigma$ augmente, plus la portée d'attraction des contours d'intérêt augmente. 
+où $\gamma$ et $\sigma$ contrôle la décroissance de la fonction et $\epsilon$ permet d'éviter la division par zero à l'origine du noyau. Pour la fonction de poids $m_1(x,y)$, plus $\gamma$ diminue, plus la portée d'attraction des contours d'intérêt augmente. De même, pour $m_2(x,y)$, plus $\sigma$ augmente, plus la portée d'attraction des contours d'intérêt augmente. La figure \ref{fig:synthetic_map} montre les lignes que suivrait une particule libre placée dans le champ de vecteur, cela permet d'étudier la portée d'attraction des différents contours d'intérêt (un bruit impulsionnel, un contour fort et un contour faible).
 
+
+\begin{figure}[!h]
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[scale=0.45]{synthetic_map.png}
+     \caption{}
+   \end{subfigure} 
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[scale=0.45]{synthetic_map_GVF.png}
+     \caption{}
+   \end{subfigure} \\
+   
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[scale=0.45]{synthetic_map_VFC_gamma017.png}
+     \caption{}
+   \end{subfigure}
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[scale=0.45]{synthetic_map_VFC_gamma011.png}
+     \caption{}
+   \end{subfigure}\\
+   
+   \caption{(a) Carte de contours $F(x,y)$ synthétique avec un bruit impulsionnel, un contour fort et un contour faible. Lignes d'attraction générées à partir (b) du champ GVF, (c) du champ VFC utilisant $m_1(x,y)$ avec $\gamma=1.7$ et (d) avec $\gamma = 1.1$ .}
+   \label{fig:synthetic_map}
+\end{figure}
 
 \subsection{Mixed Vector Field Convolution}
+
+
 
 
 
