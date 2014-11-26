@@ -13,13 +13,13 @@ m = 256;
 f = zeros(n,m);
 f((n/2-2):(n/2+2),28:32) = 255;
 f(:,126:130) = 255;
-f(:,208:212) = 128;
+f(:,208:212) = 64;
 figure(1);
 imshow((255*ones(n,m)-f),[0,255]);
 
 %%
 %Compute Fext
-K = AM_VFK(2, 128, 'power',1.8);
+K = AM_VFK(2, 128, 'power',1.1);
 FFTsize = size(f) + size(K(:,:,1)) - 1;
 k = K(:,:,1) + j*K(:,:,2);      % consider the vectors as complex numbers
 temp = ifft2(fft2(f, FFTsize(1), FFTsize(2)) .* fft2(k, FFTsize(1), FFTsize(2)));
@@ -44,7 +44,7 @@ AC_quiver(Fext,(255*ones(n,m)-f));
 
 %%
 %Show streamline
-[x y] = meshgrid(1:4:(m-1),1:4:(n-1));
+[x y] = meshgrid(1:8:(m-1),1:8:(n-1));
 vt = [x(:) y(:)];   % seeds
 VT = zeros([size(vt) 120]);
 VT(:,:,1) = vt;
@@ -69,7 +69,7 @@ for i=1:size(vt,1),
    elseif min(abs(VT(i,1,end)-wTx)+abs(VT(i,2,end)-wTy))<=2,
        plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'y','linewidth',1)
    else
-       plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'p','linewidth',1)
+       plot(squeeze(VT(i,1,:)), squeeze(VT(i,2,:)),'b','linewidth',1)
    end
 end
 hold off

@@ -19,7 +19,7 @@ disp('Vector field convolution (VFC) example')
 %% parameter settings
 disp('Initializing parameters ...')
 SAVE_AVI = 0;           % set it to 1 if you want to save the process as .avi movie
-DISPLAY_STREAMLINE = 1; % set it to 1 if you want to plot streamlines, note that it takes a while
+DISPLAY_STREAMLINE = 0; % set it to 1 if you want to plot streamlines, note that it takes a while
 mu = .2;
 GVF_ITER = 100;
 normalize = 1;
@@ -38,7 +38,7 @@ noisyU=imread('im_Unoisy.bmp');
 figure(1)
 
 %% compare 3 different cases
-for cs = 3:3,
+for cs = 1:1,
     %% compute external force fields
     switch cs,
         case 1, % traditional GVF with Gaussian filter
