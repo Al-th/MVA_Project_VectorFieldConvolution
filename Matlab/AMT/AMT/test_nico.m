@@ -1,15 +1,18 @@
 clear;
 clc;
 
-alpha = .5;
-beta = 0.1;
+%%
+% Parameters configuration
+
+gamma = 1.7;
 tau = 0.5;
 RES = 0.5;
-GVF_ITER = 100;
+GVF_ITER = 1000;
 mu = 0.2;
 R = 100;
 
-
+%%
+% Init synthetic image 
 n = 128;
 m = 256;
 f = zeros(n,m);
@@ -23,8 +26,8 @@ imshow((255*ones(n,m)-f),[0,255]);
 %Compute Fext
 
 %VFC field
-K = AM_VFK(2, 128, 'power',1.1);
-Fext = AM_VFC(f,K);
+%K = AM_VFK(2, 128, 'power',gamma);
+%Fext = AM_VFC(f,K);
 
 %GVF filed
 %Fext = AM_GVF(f, mu, GVF_ITER, 1);
@@ -73,5 +76,3 @@ for i=1:size(vt,1),
    end
 end
 hold off
-%axis equal; axis 'ij';
-%axis([1 (m-1) 1 (n-1)])
