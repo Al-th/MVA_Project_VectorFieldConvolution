@@ -41,7 +41,7 @@ if ~ismember(nargin, 1) || ndims(A) > 3
 end
 
 %% this part is matlab prototype, please refer to .c and .dll files
-if 0,
+if 1,
     if ndims(A)==3,
         B = (A([2,1:end-1],:,:) + A([2:end,end-1],:,:) + A(:,[2,1:end-1],:) + ...
             A(:,[2:end,end-1],:) + A(:,:,[2,1:end-1]) + A(:,:,[2:end,end-1]))/6-A;

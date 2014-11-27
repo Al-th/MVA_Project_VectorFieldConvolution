@@ -47,7 +47,7 @@ elseif nargin < 4,
 end
 
 %% this part is matlab prototype, please refer to .c and .dll files
-if 0,
+if 1,
     f = single(f);
     fmin  = min(f(:));
     fmax  = max(f(:));

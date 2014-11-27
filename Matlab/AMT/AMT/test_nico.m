@@ -5,6 +5,8 @@ alpha = .5;
 beta = 0.1;
 tau = 0.5;
 RES = 0.5;
+GVF_ITER = 100;
+mu = 0.2;
 R = 100;
 
 
@@ -19,16 +21,14 @@ imshow((255*ones(n,m)-f),[0,255]);
 
 %%
 %Compute Fext
-K = AM_VFK(2, 128, 'power',1.1);
-FFTsize = size(f) + size(K(:,:,1)) - 1;
-k = K(:,:,1) + j*K(:,:,2);      % consider the vectors as complex numbers
-temp = ifft2(fft2(f, FFTsize(1), FFTsize(2)) .* fft2(k, FFTsize(1), FFTsize(2)));
 
-% remove padded points
-rmv = (size(K(:,:,1)) - 1)/2;
-temp = temp(rmv(1)+1:end-rmv(1), rmv(2)+1:end-rmv(2), :);
-Fext(:,:,2) = imag(temp);
-Fext(:,:,1) = real(temp);
+%VFC field
+K = AM_VFK(2, 128, 'power',1.1);
+Fext = AM_VFC(f,K);
+
+%GVF filed
+%Fext = AM_GVF(f, mu, GVF_ITER, 1);
+
 
 % Normalize
 Fmag = sqrt(sum(Fext.*Fext,3))+eps;
@@ -44,11 +44,11 @@ AC_quiver(Fext,(255*ones(n,m)-f));
 
 %%
 %Show streamline
-[x y] = meshgrid(1:8:(m-1),1:8:(n-1));
+[x y] = meshgrid(1:4:(m-1),1:4:(n-1));
 vt = [x(:) y(:)];   % seeds
-VT = zeros([size(vt) 120]);
+VT = zeros([size(vt) 420]);
 VT(:,:,1) = vt;
-for i=1:119, % moving these seeds
+for i=1:419, % moving these seeds
     vt = AC_deform(vt,0,0,tau,Fext,1);
     VT(:,:,i+1) = vt;
 end

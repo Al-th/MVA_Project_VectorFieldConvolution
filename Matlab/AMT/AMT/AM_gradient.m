@@ -61,7 +61,7 @@ if (ndims(A) == 2 && nargout ~= 2) || (ndims(A) == 3 && nargout ~= 3)
 end
 
 %% this part is matlab prototype, please refer to .c and .dll files
-if 0,
+if 1,
     if size(A,2)>1,
         varargout{1} = (A(:,[2:end,end-1],:)-A(:,[2,1:end-1],:))/2;
     else
