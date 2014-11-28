@@ -29,3 +29,8 @@ else if strcmp(type,'sobelMagnitude')
         end
     end
 end
+EdgeMap(1,:) = 0;
+EdgeMap(end,:) = 0;
+EdgeMap(:,1) = 0;
+EdgeMap(:,end) = 0;
+end
