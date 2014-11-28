@@ -90,13 +90,13 @@ for i=1:100, % moving these seeds
     hold on;
     plot(vt(:,1),vt(:,2),'.r');
     hold off
-    imName = ['OutputImages/' typeTest num2str(i)];
-    %print(imName,'-dpng');
+    imName = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - ' num2str(i)];
+    print(imName,'-dpng');
     pause(0.1);
 end
 
 figure()
 plot_streamline(2000,5,Fext,edgeMap,downsample2d(I,downsampleFactor))
-imName = ['OutputImages/' typeTest ' - streamLines'];
-%print(imName,'-dpng');
+imName = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - streamLines'];
+print(imName,'-dpng');
 
