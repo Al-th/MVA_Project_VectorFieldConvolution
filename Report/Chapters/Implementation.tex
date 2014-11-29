@@ -1,6 +1,32 @@
 
 \section{Analyse de VFC}
 \subsection{Analyse des fonctions de magnitudes}
+Les paramètres des fonctions de magnitude $m_1(x,y)$ et $m_2(x,y)$ du noyau de convolution $\mathbf{k}$ ont une influence importante sur la convergence du contour actif vers les contours d'intérêt.
+\paragraph*{Paramètre $\gamma$ de $m_1(x,y)$}
+L'évolution du profil de la fonction $m_1(x,y)$ en fonction de $\gamma$ (\ref{gamma}) permet de voir le poids important appliqué aux bords du noyau de convolution. Cela à pour conséquence d'accroitre la portée de convergence des contours d'intérêts comme le montre la figure REF en annexe.
+
+\paragraph*{Paramètre $\sigma$ de $m_2(x,y)$}
+Les poids appliqués avec la gaussienne $m_2(x,y)$ sont beaucoup plus faibles lorsque l'on s'éloigne du centre du noyau de convolution. Plus la variance $\sigma$ augmente, plus la portée de convergence des contours d'intérêt augmente comme le montre la figure REF ANNEXE
+
+\begin{figure}[!h]
+   
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[scale=0.5]{Chapters/Images/graph_m1.png}
+     \caption{}
+     \label{gamma}
+   \end{subfigure}
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[scale=0.5]{Chapters/Images/graph_m2.png}
+     \caption{}
+     \label{sigma}
+   \end{subfigure}\\
+   
+   \caption{Profil des fonctions de magnitude  $m_1(x,y)$ (a) et $m_2(x,y)$ (b) en fonction de $\gamma$ et $\sigma$ .}
+   \label{fig:profil}
+\end{figure}
+
 \subsection{Taille du noyau de convolution}
 \subsection{Convergence sur des contours concaves}
 Une des principales améliorations introduites par GVF est la convergence des contours actifs dans les concavités de l'objet d'intérêt. La nouvelle force externe introduite par Bing Li et al. (\cite{vfc}) est censée conserver ces propriétés de convergences. Nous avons donc décidé de tester la bonne convergence d'un contour actif et de comparer les résultats obtenus en utilisant GVF et VFC.
