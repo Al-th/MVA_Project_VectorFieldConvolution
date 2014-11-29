@@ -1,4 +1,5 @@
 function [Fx,Fy] = getKernel(kernelRadius,type, param);
+
 [X,Y] = meshgrid(-kernelRadius:1:kernelRadius, -kernelRadius:1:kernelRadius);
 
 r = sqrt(X.^2+Y.^2);
