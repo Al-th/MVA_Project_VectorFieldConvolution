@@ -29,11 +29,17 @@
 
 \section{Convergence des concavités}
 \begin{figure}[H]
-\begin{tabular}{cc}
-\includegraphics[width=0.4\textwidth]{Images/star}
-&
-\includegraphics[width=0.4\textwidth]{Images/square}
-\end{tabular}
+
+\begin{subfigure}[c]{.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Images/star}
+\caption{}
+\end{subfigure}
+\begin{subfigure}[c]{.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Images/square}
+\caption{}
+\end{subfigure}
 \caption{Images synthétiques pour les tests de concavités}
 \label{fig:ann_synthetic_star_square}
 \end{figure}
@@ -57,7 +63,7 @@
 &
 \includegraphics[width=0.2\textwidth]{Images/vfc_square_conv}
 \end{tabular}
-\caption{Initialisation (haut) et convergence (bas) des contours actifs dans le cas de GVF (images de gauche) et de VFC (images de droite)}
+\caption{Initialisation et convergence des contours actifs dans le cas de GVF (deux colonnes de gauche) et de VFC (deux colonnes de droite)}
 \label{fig:ann_concavities_results}
 \end{figure}
 
@@ -92,7 +98,7 @@
 &
 \includegraphics[width=0.2\textwidth]{Images/vfc_conv_uncbig}
 \end{tabular}
-\caption{Haut: Initialisation, milieu: Evolution, bas : après 100 itérations. De gauche à droite : Initialisation centrée et grosse, Initialisation centrée petite, Initialisation décentrée petite, Initialisation décentrée et grosse}
+\caption{Initialisation, evolution et après 100 itérations. De gauche à droite : Initialisation centrée et grosse, Initialisation centrée petite, Initialisation décentrée petite, Initialisation décentrée et grosse}
 \label{fig:ann_init_results}
 \end{figure}
 

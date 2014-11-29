@@ -67,9 +67,9 @@ Le second terme de l'énergie est l'énergie externe $E_{ext}$. Il correspond à
 E_{ext}(v(s)) = -|\nabla I(v(s))|
 \end{equation}
 
-\cite{kaas} décrivent ce terme $E_{ext}$ comme une combinaison d'énergies dépendant de l'image. La littérature décrit de nombreuses variantes de ce terme d'énergie afin de résoudre différents problèmes. L'un d'entre eux est la mauvaise convergence des contours actifs dans le cas d'une bordure contenant une forte concavité.\\
+Dans \cite{kaas} ce terme $E_{ext}$ est décrit comme une combinaison d'énergies dépendant de l'image. La littérature décrit de nombreuses variantes de ce terme d'énergie afin de résoudre différents problèmes. L'un d'entre eux est la mauvaise convergence des contours actifs dans le cas d'une bordure contenant une forte concavité.\\
 
-Pour résoudre ce problème, \cite{gvf} introduisent le gradient vector flow (GVF), qui est une nouvelle écriture de l'énergie $E_{ext}$. Il est défini par le champ de vecteur $\textbf{v}(x,y) = (u(x,y), v(x,y))$ qui minimise $\varepsilon$ défini par \ref{eqn_gvf}
+Pour résoudre ce problème, \cite{gvf} introduit le gradient vector flow (GVF), qui est une nouvelle écriture de l'énergie $E_{ext}$. Il est défini par le champ de vecteur $\textbf{v}(x,y) = (u(x,y), v(x,y))$ qui minimise $\varepsilon$ défini par \ref{eqn_gvf}
 \begin{equation}
 \varepsilon = \int\int \mu(u_{x}^{2}+u_{y}^{2}+v_{x}^{2}+v_{y}^{2})+|\nabla f|^{2}|\textbf{v}-\nabla f|^{2})
 \label{eqn_gvf}
