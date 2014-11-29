@@ -31,11 +31,11 @@ hold off
 x = 0:0.01:16;
 figure(2);
 hold on
-sigmaRange = 0.5:0.5:5;
+sigmaRange = 2:2:16;
 colors = colormap(hsv(length(sigmaRange)));
 for sigma=sigmaRange,
     y = exp(-x.^2/sigma^2);
-    h(sigma*2) = plot(x,y,'Color',colors(sigma*2,:),...
+    h(sigma/2) = plot(x,y,'Color',colors(sigma/2,:),...
         'DisplayName',sprintf('sigma=%.2f',sigma));
 end
 legend(h);
