@@ -1,6 +1,6 @@
 clear;
 clc;
-[Fx,Fy] = getKernel(128,1,1.7);
+[Fx,Fy] = getKernel(64,1,1.7);
 alpha = .8;
 beta = 0.1;
 tau = 0.5;
@@ -13,7 +13,7 @@ imName = 'star.png';
 downsampleFactor = 4;
 edgeMapType = 'image';
 fextType = 'vfc';
-typeTest = 'vfc - star - gaussian';
+typeTest = 'vfc - star - gaussian -smallerkernel';
 
 noiseType = 'gaussian';
 param = 0.05;
@@ -35,6 +35,28 @@ downsampleFactor = 4;
 edgeMapType = 'image';
 fextType = 'vfc';
 typeTest = 'vfc - star - salt pepper';
+
+noiseType = 'salt & pepper';
+param = 0.15;
+%%
+clear;
+clc;
+alpha = .8;
+beta = 0.1;
+tau = 0.5;
+RES = 0.5;
+C = zeros(2);
+C(1) = 100;
+C(2) = 100;
+R = 80;
+imName = 'star.png';
+downsampleFactor = 4;
+edgeMapType = 'image';
+fextType = 'gvf';
+mu = .2;
+GVF_ITER = 10000;
+normalize = 1;
+typeTest = 'GVF - star';
 
 noiseType = 'salt & pepper';
 param = 0.05;
