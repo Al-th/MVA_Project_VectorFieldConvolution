@@ -129,12 +129,15 @@ for i=1:100, % moving these seeds
     plot(vt(:,1),vt(:,2),'.r');
     hold off
     imName = ['OutputImages/' typeTest num2str(i)];
-    print(imName,'-dpng');
+    
+    set(gca,'position',[0 0 1 1],'units','normalized')
+    %print(imName,'-dpng');
     pause(0.1);
 end
 
 figure()
 plot_streamline(2000,5,Fext,edgeMap,edgeMap)
 imName = ['OutputImages/' typeTest ' - streamLines'];
-print(imName,'-dpng');
+set(gca,'position',[0 0 1 1],'units','normalized')
+%print(imName,'-dpng');
 

@@ -3,6 +3,15 @@
 \subsection{Analyse des fonctions de magnitudes}
 \subsection{Taille du noyau de convolution}
 \subsection{Convergence sur des contours concaves}
-Une des principales 
+Une des principales améliorations introduites par GVF est la convergence des contours actifs dans les concavités de l'objet d'intérêt. La nouvelle force externe introduite par Bing Li et al est censée conserver ces propriétés de convergences. Nous avons donc décidé de tester la bonne convergence d'un contour actif et de comparer les résultats obtenus en utilisant GVF et VFC.\\ %TODO Citation
+
+Pour réaliser ces tests, nous avons donc choisi deux images de test synthétiques. La première est une étoile, la seconde est représentée par un carré dont un bord a été retiré (voir annexe image \ref{fig:ann_synthetic_star_square}). L'initialisation des contours actif est la même pour les deux forces externes, et les paramètres choisis ont été les suivants :\\
+
+VFC : $R = 128$, force $m_{1}$ avec $\gamma = 1.7$\\
+GVF : $\mu = 0.2$, $nb_{iter} = 10000$\\
+
+Les résultats sont présentés en annexe (voir \ref{ann_concavities_results}.
+
+
 \subsection{Robustesse à différents type de bruit}
 \subsection{Robustesse à l'initialisation du contour}
