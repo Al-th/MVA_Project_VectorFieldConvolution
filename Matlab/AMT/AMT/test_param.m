@@ -22,6 +22,8 @@ for gamma=gammaRange,
     ylim([0,3]);
 end
 legend(h);
+ylabel('m1 magnitude');
+xlabel('r');
 hold off
 
 %%
@@ -37,12 +39,15 @@ for sigma=sigmaRange,
         'DisplayName',sprintf('sigma=%.2f',sigma));
 end
 legend(h);
+ylabel('m2 magnitude');
+xlabel('r');
 hold off
 
 %%
 % Study the evolution of capture range w.r.t gamma
 % See test_nico.m and modify gamma to see the streamline evolution
 % load images
+typeTest = 'm1_gamma_';
 im = imread('synthetic_edge_map.png');
 f = double(im(:,:,1));
 [n,m] = size(f);
@@ -66,13 +71,16 @@ Fext(:,:,2) = Fext(:,:,2)./Fmag;
 
 figure(3);
 plot_streamline(300,4,Fext,(255*ones(n,m)-f),f_gt);
-pause(2);
+set(gca,'position',[0 0 1 1],'unit','normalized');
+imName = ['OutputImagesParam/' typeTest num2str(gamma*10)];
+print(imName,'-dpng');
 clear K; clear Fext; clear Fx; clear Fy;
 end
 
 %%
 % Study the evolution of capture range w.r.t to R (radius of kernel
 % convolution)
+typeTest = 'm1_radius_';
 
 for k=3:8
 %Compute convolution kernel
@@ -89,7 +97,9 @@ Fext(:,:,2) = Fext(:,:,2)./Fmag;
 
 figure(4);
 plot_streamline(300,4,Fext,(255*ones(n,m)-f),f_gt);
-
+set(gca,'position',[0 0 1 1],'unit','normalized');
+imName = ['OutputImagesParam/' typeTest num2str(kernelRadius)];
+print(imName,'-dpng');
 clear K; clear Fext; clear Fx; clear Fy;
 end
 
@@ -98,7 +108,9 @@ end
 % Study the evolution of the VFC field for m2 magnitude w.r.t sigma
 % Sigma must be initialized according to the radius of kernel 
 
-for sigma=20:25
+typeTest = 'm2_sigma_';
+
+for sigma=5:30
 %Compute convolution kernel
 [Fx,Fy] = getKernel(128,2,sigma);
 K(:,:,1) = Fx;
@@ -112,6 +124,8 @@ Fext(:,:,2) = Fext(:,:,2)./Fmag;
 
 figure(5);
 plot_streamline(300,4,Fext,(255*ones(n,m)-f),f_gt);
-pause(2);
+set(gca,'position',[0 0 1 1],'unit','normalized');
+imName = ['OutputImagesParam/' typeTest num2str(sigma)];
+print(imName,'-dpng');
 clear K; clear Fext; clear Fx; clear Fy;
 end
