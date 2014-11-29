@@ -3,17 +3,17 @@
 \subsection{Analyse des fonctions de magnitudes}
 \subsection{Taille du noyau de convolution}
 \subsection{Convergence sur des contours concaves}
-Une des principales améliorations introduites par GVF est la convergence des contours actifs dans les concavités de l'objet d'intérêt. La nouvelle force externe introduite par Bing Li et al est censée conserver ces propriétés de convergences. Nous avons donc décidé de tester la bonne convergence d'un contour actif et de comparer les résultats obtenus en utilisant GVF et VFC.\\ %TODO Citation
+Une des principales améliorations introduites par GVF est la convergence des contours actifs dans les concavités de l'objet d'intérêt. La nouvelle force externe introduite par Bing Li et al. (\cite{vfc}) est censée conserver ces propriétés de convergences. Nous avons donc décidé de tester la bonne convergence d'un contour actif et de comparer les résultats obtenus en utilisant GVF et VFC.
 
 Pour réaliser ces tests, nous avons donc choisi deux images de test synthétiques. La première est une étoile, la seconde est représentée par un carré dont un bord a été retiré (voir annexe image \ref{fig:ann_synthetic_star_square}). L'initialisation des contours actif est la même pour les deux forces externes, et les paramètres choisis ont été les suivants :\\
 
 VFC : $R = 128$, force $m_{1}$ avec $\gamma = 1.7$\\
 GVF : $\mu = 0.2$, $nb_{iter} = 10000$\\
 
-Les images sont présentés en annexe (voir \ref{ann_concavities_results}. On peut remarquer que dans le cas des deux forces externes, les contours actifs ont bien convergé dans les différentes concavités des objets d'intérêt. D'autre part, le nombre d'itération nécessaire pour converger est à peu près le même dans les deux cas. Cependant, il est important de noter que le temps de calcul des deux forces externes est très différent. En effet, pour que la force externe GVF soit capable de converger, il a fallu prendre un nombre d'itération de 10000. En pratique, le calcul de la force externe VFC a été 160 fois plus rapide que celui de GVF. Cette spécificité est d'ailleurs mise en valeur dans \cite{vfc}. 
+Les images sont présentés en annexe (voir \ref{ann_concavities_results}). On peut remarquer que dans le cas des deux forces externes, les contours actifs ont bien convergé dans les différentes concavités des objets d'intérêt. D'autre part, le nombre d'itération nécessaire pour converger est à peu près le même dans les deux cas. Cependant, il est important de noter que le temps de calcul des deux forces externes est très différent. En effet, pour que la force externe GVF soit capable de converger, il a fallu prendre un nombre d'itération de 10000. En pratique, le calcul de la force externe VFC a été 160 fois plus rapide que celui de GVF. Cette spécificité est d'ailleurs mise en valeur dans \cite{vfc}. 
 
 \subsection{Robustesse à l'initialisation du contour}
-D'après \cite{vfc}, VFC se comporte très bien en ce qui concerne l'initialisation du contour actif. Nous avons voulu tester cette déclaration. Nous avons donc lancé l'algorithme avec différentes initialisations. Les résultats sont présentés dans l'annexe \ref{ann_init_results}.\\ citation
+D'après \cite{vfc}, VFC se comporte très bien en ce qui concerne l'initialisation du contour actif. Nous avons voulu tester cette déclaration. Nous avons donc lancé l'algorithme avec différentes initialisations. Les résultats sont présentés dans l'annexe \ref{ann_init_results}.\\ 
 
 Les résultats montrent que malgré une bonne convergence pour des initialisations centrées approximativement au milieu de l'étoile, la convergence ne se fait pas dans le cas ou le contour actif est placé préférentiellement sur un des bord des lignes de courant. Cela met en valeur l'intérêt d'ajouter une énergie de contraite $E_{contraintes}$ comme défini dans \cite{kaas}. 
 
