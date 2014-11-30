@@ -140,7 +140,8 @@ for i=1:100, % moving these seeds
     hold on;
     plot(vt(:,1),vt(:,2),'.r');
     hold off
-    imName = ['OutputImageInitialisation/' typeTest num2str(i)];
-    print(imName,'-dpng');
+    imNameSave = ['OutputImageInitialisation/' typeTest num2str(i)];
+    set(gca,'position',[0 0 1 1],'units','normalized')
+    print(imNameSave,'-dpng');
     pause(0.1);
 end

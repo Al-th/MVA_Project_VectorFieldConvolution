@@ -36,8 +36,6 @@ edgeMapType = 'image';
 fextType = 'vfc';
 typeTest = 'VFC - square';
 %%
-%%Look at the parameter influence
-%%
 %%test GVF star
 clear;
 clc;
@@ -128,16 +126,15 @@ for i=1:100, % moving these seeds
     hold on;
     plot(vt(:,1),vt(:,2),'.r');
     hold off
-    imName = ['OutputImages/' typeTest num2str(i)];
-    
+    imName = ['OutputImagesConcavities/' typeTest num2str(i)];
     set(gca,'position',[0 0 1 1],'units','normalized')
-    %print(imName,'-dpng');
+    print(imName,'-dpng');
     pause(0.1);
 end
 
 figure()
 plot_streamline(2000,5,Fext,edgeMap,edgeMap)
-imName = ['OutputImages/' typeTest ' - streamLines'];
+imName = ['OutputImagesConcavities/' typeTest ' - streamLines'];
 set(gca,'position',[0 0 1 1],'units','normalized')
-%print(imName,'-dpng');
+print(imName,'-dpng');
 

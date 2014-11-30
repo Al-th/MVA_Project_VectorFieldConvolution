@@ -1,5 +1,26 @@
 clear;
 clc;
+[Fx,Fy] = getKernel(128,1,1.7);
+alpha = .8;
+beta = 0.1;
+tau = 0.5;
+RES = 0.5;
+C = zeros(2);
+C(1) = 115;
+C(2) = 115;
+R = 120;
+imName = 'star.png';
+downsampleFactor = 4;
+edgeMapType = 'image';
+fextType = 'vfc';
+typeTest = 'vfc - star - gaussian';
+
+noiseType = 'gaussian';
+param = 0.15;
+printFigure = 1;
+%%
+clear;
+clc;
 [Fx,Fy] = getKernel(64,1,1.7);
 alpha = .8;
 beta = 0.1;
@@ -13,11 +34,12 @@ imName = 'star.png';
 downsampleFactor = 4;
 edgeMapType = 'image';
 fextType = 'vfc';
-typeTest = 'vfc - star - gaussian -smallerkernel';
+typeTest = 'vfc - star - gaussian - smallKernel';
 
 noiseType = 'gaussian';
-param = 0.05;
+param = 0.15;
 
+printFigure =1;
 %%
 clear;
 clc;
@@ -37,7 +59,9 @@ fextType = 'vfc';
 typeTest = 'vfc - star - salt pepper';
 
 noiseType = 'salt & pepper';
-param = 0.15;
+param = 0.05;
+printFigure = 1;
+
 %%
 clear;
 clc;
@@ -56,10 +80,35 @@ fextType = 'gvf';
 mu = .2;
 GVF_ITER = 10000;
 normalize = 1;
-typeTest = 'GVF - star';
+typeTest = 'GVF - star - gaussian';
+
+noiseType = 'gaussian';
+param = 0.15;
+printFigure = 1;
+%%
+clear;
+clc;
+alpha = .8;
+beta = 0.1;
+tau = 0.5;
+RES = 0.5;
+C = zeros(2);
+C(1) = 100;
+C(2) = 100;
+R = 80;
+imName = 'star.png';
+downsampleFactor = 4;
+edgeMapType = 'image';
+fextType = 'gvf';
+mu = .2;
+GVF_ITER = 10000;
+normalize = 1;
+typeTest = 'GVF - star - salt pepper';
 
 noiseType = 'salt & pepper';
-param = 0.05;
+param = 0.15;
+
+printFigure = 1;
 
 %%
 
@@ -112,13 +161,18 @@ for i=1:100, % moving these seeds
     hold on;
     plot(vt(:,1),vt(:,2),'.r');
     hold off
-    imName = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - ' num2str(i)];
-    print(imName,'-dpng');
+    imNameSave = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - ' num2str(i)];
+    set(gca,'position',[0 0 1 1],'units','normalized')
+    if printFigure
+        print(imNameSave,'-dpng');
+    end
     pause(0.1);
 end
 
 figure()
 plot_streamline(2000,5,Fext,edgeMap,downsample2d(I,downsampleFactor))
-imName = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - streamLines'];
-print(imName,'-dpng');
-
+imNameSave = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - streamLines'];
+set(gca,'position',[0 0 1 1],'units','normalized')
+if printFigure
+    print(imNameSave,'-dpng');
+end
