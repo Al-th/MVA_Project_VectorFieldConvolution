@@ -21,13 +21,13 @@ Cette équation, qui peut être vue comme une équation bilan des forces interne
 	\label{eq:graddesc}
 \end{equation}
 
-Cette équation est ensuite résolue numériquement en utilisant une approche par différence finie (besoin d'en parler ??).
+Cette équation est ensuite habituellement résolue numériquement en utilisant une approche par différence finie.
 
 Bing Lie \& al remplace dans leur article la force externe $f_{ext}(\mathbf{v})$ par le champ VFC $f_{vfc}(\mathbf{v})$ dans l'équation \ref{eq:graddesc}.
 
 \subsection{Vector Field Convolution}
 
-Afin de calculer cette nouvelle force externe statique, les auteurs définissent d'abord un \textit{vector field kernel} $\mathbf{k}(x,y)=[u_k(x,y),v_k(x,y)]$ tel que chaque vecteur pointe vers l'origine du noyau 
+Afin de calculer cette nouvelle force externe, les auteurs définissent d'abord un \textit{vector field kernel} $\mathbf{k}(x,y)=[u_k(x,y),v_k(x,y)]$ tel que chaque vecteur pointe vers l'origine du noyau 
 \begin{equation}
 	\mathbf{k}(x,y)=m(x,y)\mathbf{n}(x,y)
 \end{equation}
@@ -40,7 +40,7 @@ A partir du noyau $\mathbf{k}(x,y)$ et de la carte des contours $f(x,y)$ obtenue
 				 & = [f(x,y)*u_k(x,y),f(x,y)*v_k(x,y)]
 \end{align*}
 
-Etant donné que la carte des contours a une réponse forte au niveau des contours, ceux-ci participent d'avantage au calcul du champ VFC par rapport aux zones homogènes. Ainsi, en considérant une particule libre placée dans le champ VFC, celle-ci sera attirée vers les contours de l'image. 
+Etant donné que la carte des contours a une réponse forte au niveau des contours, ceux-ci participent d'avantage au champ de forces VFC par rapport aux zones homogènes. Ainsi, en considérant une particule libre placée dans le champ VFC, celle-ci sera attirée vers les contours de l'image. 
 
 Le champ VFC dépend fortement du noyau $\mathbf{k(x,y)}$ et en particulier du poids $m(x,y)$ qui est affecté à chaque vecteur du noyau de convolution. Les auteurs partent du principe que plus une particule s'éloigne du contour d'intérêt plus la force d'attraction du contour sur la particule diminue. Ainsi ils proposent deux types de fonctions :
 \begin{align}
@@ -53,7 +53,7 @@ où $\gamma$ et $\sigma$ contrôle la décroissance de la fonction et $\epsilon$
 
 
 \subsection{Variantes}
-Bing Li \& al propose, en plus de cette nouvelle force externe, plusieurs variantes afin de palier à certains défauts du champ VFC.
+L'article de Bing Li \& al décrit, en plus de cette nouvelle force externe, plusieurs variantes afin de palier à certains défauts du champ VFC.
 
 \subsubsection*{Mixed VFC}
 
