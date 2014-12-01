@@ -33,11 +33,11 @@ Afin de calculer cette nouvelle force externe statique, les auteurs définissent
 \end{equation}
 où $m(x,y)$ est le poids affecté au vecteur en $(x,y)$ et $\mathbf{n}(x,y)$ est le vecteur unitaire pointant vers l'origine du noyau $(0,0)$.
 
-A partir du noyau $\mathbf{k}(x,y)$ et de la carte des contours $F(x,y)$ obtenue à partir de l'image d'origine $I(x,y)$, le champ VFC est définie par :
+A partir du noyau $\mathbf{k}(x,y)$ et de la carte des contours $f(x,y)$ obtenue à partir de l'image d'origine $I(x,y)$, le champ VFC est définie par :
 
 \begin{align*}
-	f_{vfc}(x,y) & = F(x,y)*\mathbf{k}(x,y) \\
-				 & = [F(x,y)*u_k(x,y),F(x,y)*v_k(x,y)]
+	f_{vfc}(x,y) & = f(x,y)*\mathbf{k}(x,y) \\
+				 & = [f(x,y)*u_k(x,y),f(x,y)*v_k(x,y)]
 \end{align*}
 
 Etant donné que la carte des contours a une réponse forte au niveau des contours, ceux-ci participent d'avantage au calcul du champ VFC par rapport aux zones homogènes. Ainsi, en considérant une particule libre placée dans le champ VFC, celle-ci sera attirée vers les contours de l'image. 
@@ -52,12 +52,29 @@ où $\gamma$ et $\sigma$ contrôle la décroissance de la fonction et $\epsilon$
 
 
 
+\subsection{Variantes}
+Bing Li \& al propose, en plus de cette nouvelle force externe, plusieurs variantes afin de palier à certains défauts du champ VFC.
 
+\paragraph{Mixed VFC}
 
-\subsection{Mixed Vector Field Convolution}
+Le champ VFC introduit précédemment peut causer, aux endroits où les contours de l'objet à segmenter sont faibles, des problèmes de fuite du contour actif \cite{vfc}. Afin de palier à ce problème, une version adaptative du champ VFC, $f_{mix}$, est proposée :
 
- 
+\begin{equation}
+ f_{mix}(x,y) = \left\{ 
+  \begin{array}{l l}
+    \nabla f(x,y) & \quad ||\nabla f(x,y)|| \geq \phi \\
+     f_{vfc}(x,y) & \quad ||\nabla f(x,y)||   <  \phi
+  \end{array} \right.
+\end{equation}
 
+où $\phi$ est un seuil qui détermine les contours que l'on souhaite conserver et $f(x,y)$ est la carte des contours. Il s'agit d'une force adaptative qui remplit les zones homogènes par le champ VFC et garde la force externe standard au niveau des contours.
 
+\paragraph{Fonction de magnitude anisotrope}
 
-\subsection{}
+Le champ \textit{motion} GVF, proposé par N. Ray et al \cite{mgvf}, est une variante du champ GVF prenant en compte la direction du mouvement de cellules entre 2 images afin de pouvoir les suivre avec le contour actif. Pour suivre cette idée, Bing Li \& al propose d'inclure un terme anisotrope à la fonction de magnitude afin de prendre en compte la direction du mouvement des objets que l'on souhaite segmenter. La fonction de magnitude est définie par :
+
+\begin{equation}
+	m_3(x,y) = c(x,y)m_i(x,y), \quad i=1,2
+\end{equation}
+
+où $c(x,y)=1/[2-\mathbf{d} \cdot \mathbf{n}(x,y)]$ avec $\mathbf{d}$ le vecteur directeur normalisé du mouvement. Plus $\mathbf{d}$ et $\mathbf{n}(x,y)$ ont une direction similaire, plus $c(x,y)$ se rapproche de 1. Ainsi, la direction $\mathbf{d}$ est privilégiée dans le champ VFC. 
