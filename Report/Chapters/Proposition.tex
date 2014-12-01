@@ -1,18 +1,18 @@
 \section{Proposition de l'article}
 
-Le modèle de segmentation par contour actif utilisant le champ GVF pour définir son énergie externe présente cependant des limitations dont Bing Li \& al font mention dans leur article : un temps de calcul important, une forte sensibilité au bruit et aux paramètres. D'autre part, la relation entre les paramètres de GVF et la portée à laquelle le contour actif est attirée par le bord n'est pas claire.\\
+Le modèle de segmentation par contour actif utilisant le champ GVF pour définir son énergie externe $E_{ext}$ présente cependant des limitations dont Bing Li \& al font mention dans leur article : un temps de calcul important, une forte sensibilité au bruit et aux paramètres. D'autre part, la relation entre les paramètres de GVF et la portée à laquelle le contour actif est attirée par le bord n'est pas claire.\\
 
 Afin de corriger ces différents problèmes, Bing Li \& al présentent dans cet article une nouvelle définition de la force externe régissant l'évolution du contour actif vers les bords  de l'objet à segmenter. Cette nouvelle force externe, nommé Vector Field Convolution (VFC), est calculée en convoluant un noyau de champ de vecteur à une carte des contours extraite de l'image d'origine.   
 
 \subsection{Minimisation de l'énergie $E_{ac}$}
 
-Lorsque le minimum de $E_{ac}$ est atteint, le contour actif $\mathbf{v}(s)$ doit satisfaire l'équation d'Euler-Lagrange :
+Lorsque le minimum de $E_{ac}$, définie en \ref{eqn_energie}, est atteint, le contour actif $\mathbf{v}(s)$ doit satisfaire l'équation d'Euler-Lagrange :
 \begin{equation}
 	\alpha \mathbf{v}'' - \beta \mathbf{v}'''' + f_{ext}(\mathbf{v}) = 0
 	\label{eq:bilan}
 \end{equation}
 
-où $f_{ext}= - \nabla E_{ext}(\mathbf{v})$
+où $f_{ext}= - \nabla E_{ext}(\mathbf{v})$. \\
 
 Cette équation, qui peut être vue comme une équation bilan des forces internes ($\alpha \mathbf{v}'' - \beta \mathbf{v}''''$) et externes $f_{ext}$, permet de calculer $\mathbf{v}(s)$. Afin de résoudre \ref{eq:bilan}, le contour $\mathbf{v}(s)$ est considéré comme une fonction du temps $t$. La solution est obtenue en appliquant une descente de gradient sur l'équation en partant d'un contour initial $\mathbf{v}(s,0)$:
 
@@ -55,7 +55,7 @@ où $\gamma$ et $\sigma$ contrôle la décroissance de la fonction et $\epsilon$
 \subsection{Variantes}
 Bing Li \& al propose, en plus de cette nouvelle force externe, plusieurs variantes afin de palier à certains défauts du champ VFC.
 
-\paragraph{Mixed VFC}
+\subsubsection*{Mixed VFC}
 
 Le champ VFC introduit précédemment peut causer, aux endroits où les contours de l'objet à segmenter sont faibles, des problèmes de fuite du contour actif \cite{vfc}. Afin de palier à ce problème, une version adaptative du champ VFC, $f_{mix}$, est proposée :
 
@@ -69,7 +69,7 @@ Le champ VFC introduit précédemment peut causer, aux endroits où les contours
 
 où $\phi$ est un seuil qui détermine les contours que l'on souhaite conserver et $f(x,y)$ est la carte des contours. Il s'agit d'une force adaptative qui remplit les zones homogènes par le champ VFC et garde la force externe standard au niveau des contours.
 
-\paragraph{Fonction de magnitude anisotrope}
+\subsubsection*{Fonction de magnitude anisotrope}
 
 Le champ \textit{motion} GVF, proposé par N. Ray et al \cite{mgvf}, est une variante du champ GVF prenant en compte la direction du mouvement de cellules entre 2 images afin de pouvoir les suivre avec le contour actif. Pour suivre cette idée, Bing Li \& al propose d'inclure un terme anisotrope à la fonction de magnitude afin de prendre en compte la direction du mouvement des objets que l'on souhaite segmenter. La fonction de magnitude est définie par :
 

@@ -3,31 +3,31 @@
 \subsection{Problématique}
 La segmentation d'image consiste à réaliser une partition de l'image afin que les différents groupes de pixels/voxels de l'image aient un sens pour le problème. De manière plus générale, la segmentation d'images consiste souvent à séparer des objets d'intérêt du fond de l'image (le fond de l'image étant constitué de l'environnement dans lequel est placé l'objet, cet environnement n'étant pas forcément de premier intérêt pour la résolution du problème).\\
 
-Cette définition très générale implique que les champs d'applications de la segmentation d'image sont très vastes. En effet, les domaines dans lequel les techniques de segmentation peuvent être utilisées sont très variés (suivi de missiles, analyse d'images satellitaires, surveillance, imagerie microscopique, domaine médical, ect) et les méthodes d'acquisition d'images aussi (Dans le domaine médical, on peut par exemple travailler sur de l'imagerie par rayons X, de l'imagerie IRM ou de l'imagerie échographique par exemple).
+Cette définition très générale implique que les champs d'applications de la segmentation d'image sont très vastes. En effet, les domaines dans lesquels les techniques de segmentation peuvent être utilisées sont très variés (suivi de missiles, analyse d'images satellitaires, surveillance, imagerie microscopique, domaine médical, etc) et les méthodes d'acquisition d'images aussi (dans le domaine médical, on peut par exemple travailler sur de l'imagerie par rayons X, de l'imagerie IRM ou de l'imagerie échographique).
 
 \subsubsection*{Segmentation d'images médicales}
 
-Dans le domaine de l'imagerie médicale, la d'objets d'intérêts dans les images joue une rôle important. En effet, dans ce domaine particulier, les objets d'intérêts dans les images peuvent par exemple être des structures anatomiques, des organes, différents types de tissus, des pathologies. La détection de ces différents objets peut déjà fournir une aide pour la caractérisation de l'état d'un patient, et leur étude temporelle peut mener à affiner un diagnostique, à déterminer si un traitement a l'impact escompté, ou bien encore si l'état du patient s'aggrave.\\
+Dans le domaine de l'imagerie médicale, la détection d'objets d'intérêts dans les images joue une rôle important. En effet, dans ce domaine particulier, les objets d'intérêts dans les images peuvent par exemple être des structures anatomiques, des organes, différents types de tissus, des pathologies. La détection de ces différents objets peut déjà fournir une aide pour la caractérisation de l'état d'un patient, et leur étude temporelle peut mener à affiner un diagnostique, à déterminer si un traitement a l'impact escompté, ou bien encore si l'état du patient s'aggrave.\\
 
 Il est donc indispensable de fournir aux médecins des méthodes efficaces de partitionnement des images et ces méthodes, pouvant impacter la vie de patients, doivent être les plus précises possibles.\\
 
-Il est aussi important de noter que dans le domaine médical, le nombre de méthode d'acquisition d'images est très vaste, et que chaque problème doit être adapté aux type d'images étudiées. D'autre part, les méthodes doivent aussi être robustes aux différences de morphologies des patients.
+Il est aussi important de noter que dans le domaine médical, le nombre de méthode d'acquisition d'images est très vaste, et que chaque problème doit être adapté aux types d'images étudiées. D'autre part, les méthodes doivent aussi être robustes aux différences de morphologies des patients.
 
 
 \subsection{Méthodes de segmentation d'images}
 \subsubsection*{Méthodes par seuillage}
 Les méthodes de segmentation par seuillage consiste à considérer que les différents objets de l'image peuvent être caractérisés par leurs distributions en intensité. D'autre part, pour que ces méthodes soient efficaces, il est nécessaires que les différentes classes (objets d'intérêts) de l'image correspondent à différentes gammes d'intensité. Ainsi, segmenter l'image correspond à trouver une partition de l'histogramme de l'image.\\
 
-L'utilisation de ces méthodes reposent néanmoins sur de nombreux aprioris sur les images, ainsi que des conditions de prises de vue optimales. Ces méthodes sont néanmoins rapide et très simple à mettre en oeuvre. Dans le domaine médical tout particulièrement, ces méthodes sont fortement impactée par l'effet de volume partiel (Partial Volume Effect) qui implique que deux objets anatomiques peuvent contribuer à l'intensité d'un même pixel en raison d'une résolution d'image trop faible.
+L'utilisation de ces méthodes reposent néanmoins sur de nombreux aprioris sur les images, ainsi que des conditions de prises de vue optimales. Ces méthodes sont néanmoins rapide et très simple à mettre en œuvre. Dans le domaine médical tout particulièrement, ces méthodes sont fortement impactées par l'effet de volume partiel (Partial Volume Effect) qui implique que deux objets anatomiques peuvent contribuer à l'intensité d'un même pixel en raison d'une résolution d'image trop faible.
 
 \subsubsection*{Méthodes par recherche de régions}
-Les méthodes de segmentation par région (Une région est un ensemble de pixels connexes) sont fondées sur l'idée que l'image est composée de régions homogènes. Elles impliquent donc un critère d'homogénéité (similarité des niveaux de gris, répétition de textures, ect) et un critère de voisinage.\\
+Les méthodes de segmentation par région (Une région est un ensemble de pixels connexes) sont fondées sur l'idée que l'image est composée de régions homogènes. Elles impliquent donc un critère d'homogénéité (similarité des niveaux de gris, répétition de textures, etc) et un critère de voisinage.\\
 
-La segmentation consiste à créer une partition de l'image telle que l'image soit décrite par l'union de toute les régions, que toute ces régions soient connexes, que le critère d'homogénéité soit respecté pour chacune de ces régions, et enfin que deux régions voisines ne satisfont pas ce critère d'homogénéités. On notera que le choix du critère d'homogénéité est primordial.
+La segmentation consiste à créer une partition de l'image telle que l'image soit décrite par l'union de toute les régions, que toute ces régions soient connexes, que le critère d'homogénéité soit respecté pour chacune de ces régions, et enfin que deux régions voisines ne satisfont pas ce critère d'homogénéité. On notera que le choix du critère d'homogénéité est primordial.
 
 
 \subsubsection*{Méthodes par classification}
-Les méthodes de segmentation par classification consistent à estimer la probabilité d'appartenance d'un pixel à une classe. Pour faire cela, on considère un certain nombre de caractéristiques pour chaque pixels (intensité, intensité de plusieurs modalités différentes, corrélation de l'intensité des pixels, ect) et on tente de constituer des groupes significatifs en regard de ces différentes caractéristiques. Une des difficultés de ces méthodes est l'estimation du nombre de classes qui doit souvent être réalisé a priori.
+Les méthodes de segmentation par classification consistent à estimer la probabilité d'appartenance d'un pixel à une classe. Pour faire cela, on considère un certain nombre de caractéristiques pour chaque pixels (intensité, intensité de plusieurs modalités différentes, corrélation de l'intensité des pixels, etc) et on tente de constituer des groupes significatifs en regard de ces différentes caractéristiques. Une des difficultés de ces méthodes est l'estimation du nombre de classes qui doit souvent être réalisée a priori.
 
 
 \subsubsection*{Méthodes par utilisation des contours}
@@ -41,38 +41,40 @@ Ces méthodes consistent donc à créer un détecteur de bords. Un bord est une 
 
 \subsection{Modèles à contours actifs}
 
-Les modèles à contours actifs ont été introduits par Kass et al. en 1988. Un contour actif est défini par une courbe continue et est représentée par une forme paramétrique :
+Les modèles à contours actifs ont été introduits par Kass et al. en 1988. Un contour actif est défini par une courbe continue qui est représentée par sa forme paramétrique :
 \begin{equation*}
-v : \Omega =[0,1] \rightarrow \mathbb{R}^2
+\mathbf{v} : \Omega =[0,1] \rightarrow \mathbb{R}^2
 \end{equation*}
 
-Cette courbe est soumises à différentes forces et se déforme ainsi jusqu'à atteindre une énergie minimale. En règle générale l'énergie du système est définie par : 
+Cette courbe est soumise à différentes forces et se déforme ainsi jusqu'à atteindre une énergie minimale. En règle générale l'énergie du système est définie par : 
 
 \begin{equation}
-E = \int_{\Omega}{E_{ext}(v(s)) + E_{int}(v(s)) + E_{contraitnes} ds}
+E_{ac} = \int_{\Omega}{E_{ext}(\mathbf{v}(s)) + E_{int}(\mathbf{v}(s)) + E_{contraintes} ds}
 \label{eqn_energie}
 \end{equation}
 
-Dans l'équation \ref{eqn_energie}, le terme $E_{int}(v(s))$ correspond à l'énergie interne de la courbe (ou énergie de régularisation). Cette énergie décrit l'énergie du modèle physique de la courbe, à savoir la rigidité et l'élasticité de la courbe.
+Dans l'équation \ref{eqn_energie}, le terme $E_{int}(\mathbf{v}(s))$ correspond à l'énergie interne de la courbe (ou énergie de régularisation). Cette énergie décrit l'énergie du modèle physique de la courbe, à savoir la rigidité et l'élasticité de la courbe.
 
 \begin{equation}
-E_{int}(v(s)) = \frac{1}{2}\left(\alpha|v'(s)|^{2}+\beta|v''(s)|^{2}\right)
+E_{int}(\mathbf{v}(s)) = \frac{1}{2}\left(\alpha|\mathbf{v}'(s)|^{2}+\beta|\mathbf{v}''(s)|^{2}\right)
 \end{equation}
 
-Le troisième terme de l'energie représente l'énergie de contraintes. Elle correspond aux contraintes qu'on souhaite ajouter afin de prendre en compte une connaissance a priori que l'on cherche à introduire dans le modèle.
+Le troisième terme de l'énergie représente l'énergie de contraintes. Elle correspond aux contraintes qu'on souhaite ajouter afin de prendre en compte une connaissance a priori que l'on cherche à introduire dans le modèle.
 
-Le second terme de l'énergie est l'énergie externe $E_{ext}$. Il correspond à l'adéquation de la courbe aux données selon des critères définis par l'utilisateur. Si on cherche à exprimer l'adéquation de la courbe aux fortes discontinuités de l'image (on rapelle que le problème dual de la segmentation d'objet d'une image est la détection de ses bordures), on pourra alors par exemple exprimer $E_{ext}(v(s))$ par :
+Le second terme de l'énergie est l'énergie externe $E_{ext}$. Il correspond à l'adéquation de la courbe aux données selon des critères définis par l'utilisateur. Si on cherche à exprimer l'adéquation de la courbe aux fortes discontinuités de l'image (on rappelle que le problème dual de la segmentation d'objet d'une image est la détection de ses bordures), on pourra alors par exemple exprimer $E_{ext}(\mathbf{v}(s))$ par :
 
 \begin{equation}
-E_{ext}(v(s)) = -|\nabla I(v(s))|
+E_{ext}(\mathbf{v}(s)) = -|\nabla I(\mathbf{v}(s))|
 \end{equation}
 
 Dans \cite{kaas} ce terme $E_{ext}$ est décrit comme une combinaison d'énergies dépendant de l'image. La littérature décrit de nombreuses variantes de ce terme d'énergie afin de résoudre différents problèmes. L'un d'entre eux est la mauvaise convergence des contours actifs dans le cas d'une bordure contenant une forte concavité.\\
 
-Pour résoudre ce problème, \cite{gvf} introduit le gradient vector flow (GVF), qui est une nouvelle écriture de l'énergie $E_{ext}$. Il est défini par le champ de vecteur $\textbf{v}(x,y) = (u(x,y), v(x,y))$ qui minimise $\varepsilon$ défini par \ref{eqn_gvf}
+Pour résoudre ce problème, \cite{gvf} introduit le gradient vector flow (GVF), qui est une nouvelle écriture de l'énergie $E_{ext}$. Il est défini par le champ de vecteur $f_{gvf}(x,y) = [u(x,y), v(x,y)]$ qui minimise $\varepsilon$ défini par \ref{eqn_gvf}
 \begin{equation}
-\varepsilon = \int\int \mu(u_{x}^{2}+u_{y}^{2}+v_{x}^{2}+v_{y}^{2})+|\nabla f|^{2}|\textbf{v}-\nabla f|^{2})
+\varepsilon = \int\int \mu(u_{x}^{2}+u_{y}^{2}+v_{x}^{2}+v_{y}^{2})+|\nabla f|^{2}|f_{gvf}-\nabla f|^{2})
 \label{eqn_gvf}
 \end{equation}
+
+où $f$ représente la carte des contours de l'image que l'on cherche à segmenter.\\
 
 Dans ce document, nous ferons l'étude d'une nouvelle écriture de ce terme $E_{ext}$ nommée Vector Field Convolution (VFC).
