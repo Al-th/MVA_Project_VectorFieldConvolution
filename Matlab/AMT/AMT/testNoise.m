@@ -106,7 +106,7 @@ normalize = 1;
 typeTest = 'GVF - star - salt pepper';
 
 noiseType = 'salt & pepper';
-param = 0.01;
+param = 0.15;
 
 printFigure = 0;
 

@@ -51,6 +51,7 @@ Les résultats montrent que malgré une bonne convergence pour des initialisatio
 
 
 \subsection{Robustesse à différents type de bruit}
+\label{subsec:noise}
 La force externe VFC a été introduite afin de réduire la sensibilité des contours actifs au bruit. Nous avons donc décidé de comparer les résultats obtenus en utilisant GVF et VFC en présence de différents types de bruit. \cite{vfc} précise que GVF est spécialement sensible à un bruit impulsionnel. Nous avons donc choisi de tester l'influence de ce bruit. Nous avons aussi testé l'évolution des deux forces en présence d'un bruit additif gaussien. 
 
 Les images sont présentées en annexes (\ref{ann_noise_results}). On peut remarquer qu'effectivement, la force externe GVF se comporte très mal en présence d'un bruit impulsionnel. Avec uniquement 5\% des pixels touchés, les contours ne convergent pas vers l'étoile. Avec 10\% le contour initial n'est presque pas déformé. A l'inverse, VFC converge très rapidement. Même avec 15\% de pixels touchés, on obtient des résultats convaincants. Les bout des étoiles sont cependant moins bien définis par le contour actif.\\
