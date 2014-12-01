@@ -1,1 +1,17 @@
 \section{Conclusion et discussions}
+
+Dans ce document, nous avons tout d'abord fait un récapitulatif des méthodes de segmentation d'images, et nous avons défini la problématique (à la fois dans un cadre général et dans le cadre du traitement d'images médicales).
+
+Nous avons présenté un peu plus en détail les méthodes de contours actifs et nous avons présenté une écriture du terme de force extérieure dénommée Gradient Vector Flow. Puis, dans un second temps, nous avons présenté les travaux de l'article étudié, dans lesquels une nouvelle force extérieure est présentée : Vector Field Convolution.
+
+Dans un dernier temps, nous avons fait une analyse vaste des différentes propositions énoncées dans l'article afin de les vérifier. Cette analyse a permis d'identifier des comportements que l'on pourrait souhaiter améliorer.\\
+
+En effet, nous avons pu vérifier que le choix de la portée d'attraction est beaucoup plus direct lorsqu'on utilise la force externe VFC. La portée de convergence étant directement lié au rayon $R$ du noyau $k(x,y)$ (et bien entendu aux paramètres des forces $m_{1}$ ou $m_{2}$), il est beaucoup plus aisé de choisir la portée d'attraction maximale souhaitée. Cependant, choisir une portée d'attraction élevée n'est pas forcément souhaitable dans tout les cas (Nous l'avons montré dans la section \ref{subsec:noise}).\\
+
+D'autre part, nous avons montré que le choix des paramètres $\sigma$ et $\gamma$ des forces $m_{1}$ et $m_{2}$ influent fortement sur l'écriture de la force externe totale. \cite{vfc} présente une estimation du paramètre $\gamma$.\\ 
+
+Bien que nous ayons pu remarquer que VFC n'est pas aussi insensible à l'initialisation que ce qui est présenté dans \cite{vfc}, nous avons pu montrer que cette écrite de force permet bien aux contours actifs d'épouser la forme de concavités importantes. Enfin, notre étude des résultats de GVF et VFC face au bruit montre que si VFC résous bien les problèmes posés par le bruit impulsionnel, les résultats de VFC soumis à un bruit additif gaussien ne sont pas aussi bons. Nous avons notamment montré qu'avec une portée de convergence plus petite, les résultats peuvent être amélioré et une question peut donc être formulée : \textbf{Est-il logique de convoluer toute l'image avec un noyau de convolution unique?}\\
+
+Une idée pourrait être de modifier le noyau de convolution $k$ en fonction de l'image (ou de la carte des contours). Un exemple simple pourrait être de changer la taille du noyau de convolution en fonction de l'intensité du contour. On attend en effet qu'un contour intense ait une portée d'attraction importante et, à l'inverse, une particule de bruit moins intense devrait avoir une portée d'attraction plus faible. En réalité, on pourrait déjà s'attendre à avoir ce genre de comportement avec l'écriture de VFC actuelle, malheureusement un amas de particule de faible intensité peut changer le bilan des forces et empêcher une bonne convergence de la solution.\\
+
+On notera que cette idée de noyau adaptatif a été étudié dans des publications récentes. \cite{tvfc} présente une méthode pour modifier la structure du noyau de convolution en utilisant les caractéristiques des structures locales de l'image. D'autre part \cite{mtvfc} propose de réaliser une évolution des contours actifs à petite échelle, et d'utiliser chaque résultats comme initialisation des contours actifs de l'échelle suivante. Ce principe d'espace-échelle est par ailleurs décrit dans \cite{mvfc}.
