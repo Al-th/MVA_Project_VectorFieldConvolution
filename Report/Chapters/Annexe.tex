@@ -37,7 +37,7 @@
    \caption{(a) Carte de contours $F(x,y)$ synthétique avec un bruit impulsionnel, un contour fort et un contour faible. Lignes de courant générées à partir du champ VFC utilisant $m_1(x,y)$ avec plusieurs valeurs du paramètre $\gamma$ et pour un rayon $R=128$ du noyau de convolution.}
    \label{fig:gamma}
 \end{figure}
-\subsection{Analyse de $m_1(x,y)$}
+\subsection{Analyse de $m_2(x,y)$}
 \begin{figure}[!h]
    \begin{subfigure}[c]{.5\linewidth}
      \centering
@@ -76,6 +76,45 @@
    \label{fig:sigma}
 \end{figure}
 
+\section{Taille du noyau de convolution}
+
+\begin{figure}[!h]
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[width=\textwidth]{Chapters/Images/synthetic_map.png}
+     \caption{}
+   \end{subfigure} 
+      \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[width=\textwidth]{Chapters/Images/m1_radius_16.png}
+     \caption{$R=16$}
+   \end{subfigure} \\
+   
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[width=\textwidth]{Chapters/Images/m1_radius_32.png}
+     \caption{$R=32$}
+   \end{subfigure}   
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[width=\textwidth]{Chapters/Images/m1_radius_64.png}
+     \caption{$R=64$}
+   \end{subfigure}\\
+   
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[width=\textwidth]{Chapters/Images/m1_radius_128.png}
+     \caption{$R=128$}
+   \end{subfigure}
+   \begin{subfigure}[c]{.5\linewidth}
+     \centering
+     \includegraphics[width=\textwidth]{Chapters/Images/m1_radius_256.png}
+     \caption{$R=256$}
+   \end{subfigure}\\
+   
+   \caption{(a) Carte de contours $F(x,y)$ synthétique avec un bruit impulsionnel, un contour fort et un contour faible. Lignes de courant générées à partir du champ VFC utilisant $m_1(x,y)$ avec $\gamma=1.7$ et pour différents rayons $R$ du noyau de convolution.}
+   \label{fig:taille}
+\end{figure}
 \section{Analyse de la convergence dans les zones concaves}
 \label{ann_concavities_results}
 
