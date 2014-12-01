@@ -16,8 +16,8 @@ fextType = 'vfc';
 typeTest = 'vfc - star - gaussian';
 
 noiseType = 'gaussian';
-param = 0.15;
-printFigure = 1;
+param = 0.01;
+printFigure = 0;
 %%
 clear;
 clc;
@@ -39,7 +39,7 @@ typeTest = 'vfc - star - gaussian - smallKernel';
 noiseType = 'gaussian';
 param = 0.15;
 
-printFigure =1;
+printFigure = 0;
 %%
 clear;
 clc;
@@ -59,8 +59,8 @@ fextType = 'vfc';
 typeTest = 'vfc - star - salt pepper';
 
 noiseType = 'salt & pepper';
-param = 0.05;
-printFigure = 1;
+param = 0.15;
+printFigure = 0;
 
 %%
 clear;
@@ -84,7 +84,7 @@ typeTest = 'GVF - star - gaussian';
 
 noiseType = 'gaussian';
 param = 0.15;
-printFigure = 1;
+printFigure = 0;
 %%
 clear;
 clc;
@@ -106,9 +106,9 @@ normalize = 1;
 typeTest = 'GVF - star - salt pepper';
 
 noiseType = 'salt & pepper';
-param = 0.15;
+param = 0.01;
 
-printFigure = 1;
+printFigure = 0;
 
 %%
 
@@ -159,7 +159,7 @@ for i=1:100, % moving these seeds
     
     imshow(edgeMap,[min(min(edgeMap)) max(max(edgeMap))]);
     hold on;
-    plot(vt(:,1),vt(:,2),'.r');
+    plot(vt(:,1),vt(:,2),'-r','LineWidth',4);
     hold off
     imNameSave = ['OutputImagesNoise/' typeTest ' - ' num2str(param*100) ' - ' num2str(i)];
     set(gca,'position',[0 0 1 1],'units','normalized')
